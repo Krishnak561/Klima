@@ -20,14 +20,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void load_Navigate() async {
-    var pos = await loc.getloc();
-    double lat = pos.latitude;
-    double long = pos.longitude;
-
-    await loc.getClimate(lat, long);
+    var decodedData = await loc.getClimate();
 
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => MainPage()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => MainPage(LocationData: decodedData)));
   }
 
   @override
